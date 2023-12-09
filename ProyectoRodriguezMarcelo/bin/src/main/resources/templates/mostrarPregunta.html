@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Listado Preguntas</title>
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+</head>
+<body>
+<div th:replace="~{layout :: header}"></div>
+<h3>Listado Preguntas</h3>
+<!-- TABLA DE DOCENTES -->
+<div class="container col-10">
+	<table class="table table-striped-columns">
+	<!-- Encabezado -->
+	<tr>
+		<th>Código</th>
+		<th>Pregunta</th>
+		<th>Opción 1</th>
+		<th>Opción 2</th>
+		<th>Opción 3</th>
+		<th>Opción 4</th>
+		<th>Opción Correcta</th>
+		<th>Dificultad</th>
+		<th>Editar</th>
+	</tr>
+	<tr th:each="pregunta : ${preguntaListado}">
+		<td th:text="${pregunta.idPregunta}"></td>
+		<td th:text="${pregunta.pregunta}"></td>
+		<td th:text="${pregunta.opcion1}"></td>
+		<td th:text="${pregunta.opcion2}"></td>
+		<td th:text="${pregunta.opcion3}"></td>
+		<td th:text="${pregunta.opcion4}"></td>
+		<td>
+	      <span th:switch="${pregunta.opcionCorrecta}">
+	        <span th:case="1">Primera Opción</span>
+	        <span th:case="2">Segunda Opción</span>
+	        <span th:case="3">Tercera Opción</span>
+	        <span th:case="4">Cuarta Opción</span>
+	      </span>
+		</td>
+		<td>
+	      <!--<span th:switch="${pregunta.dificultad}">
+	        <span th:case="1">Fácil</span>
+	        <span th:case="2">Intermedio</span>
+	        <span th:case="3">Díficil</span>
+	        <span th:case="4">Imposible</span>
+	      </span>-->
+		</td>
+		<td>
+			<a th:href="@{'/modificarPregunta/'+${pregunta.idPregunta}}" href="#" class="btn btn-primary">Modificar</a>
+			<a th:href="@{'/eliminarPregunta/'+${pregunta.idPregunta}}" href="#" class="btn btn-primary">Eliminar</a>   
+		</td>
+	</tr>
+	</table>
+		
+		<a th:href="@{'/pregunta'}" href="#" class="btn btn-primary">Añadir más preguntas</a>
+			
+</div>
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

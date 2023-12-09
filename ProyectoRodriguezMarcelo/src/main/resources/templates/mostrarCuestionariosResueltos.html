@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Cuestionarios resueltos</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+</head>
+<body>
+	 <div th:replace="~{layout :: header-index}"></div>
+	 
+	 	<div class="cards">
+			<div class="conteiner-fluid">
+				<div class="row" style="margin-left:0; justify-content: center; margin-right:0;">
+					<div class="card" style="width: 18rem; margin:7px;" th:each="cuestionarioAlum: ${cuestionarioAlumnoListado}" >
+					 	 <div class="card-body">
+						    <h5 class="card-title" th:text="${cuestionarioAlum.cuestionario.titulo}"></h5>
+						    <h6 class="card-subtitle mb-2 text-body-secondary" >
+						    Estudiante: <span th:text="${cuestionarioAlum.alumno.nombre + ' ' + cuestionarioAlum.alumno.apellido}"></span>
+						    </h6>
+						    <p class="card-text"  >Fecha: <span th:text="${cuestionarioAlum.fechaRealizada}"></span></p>
+						    <p class="card-text" >
+						    Califación: <span th:text="${cuestionarioAlum.puntajeObtenido} + ' / '+ ${cuestionarioAlum.cuestionario.puntajeTotal}"></span>
+						    </p>
+						    
+					 	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+
+	<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

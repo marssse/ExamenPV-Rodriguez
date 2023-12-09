@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Resultado de Cuestionario</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+</head>
+<body>
+ 
+ <div th:replace="~{layout :: header}"></div>
+    
+    <div class="container col-lg-4 mx-auto p-4 rounded-5" style="background-color: #007bff; color: #fff;">
+    
+        <div class="card" style="width: 18rem; margin:10px;">
+          <div class="card-body">
+           
+            <h5 class="card-title" th:text="${nuevoCuestionarioAlumno.alumno.nombre + ' ' +nuevoCuestionarioAlumno.alumno.apellido}" style="color: darkblue;"></h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${nuevoCuestionarioAlumno.cuestionario.titulo}" style="color: darkblue;"></h6> 
+            <h1 class="card-text" th:text="${nuevoCuestionarioAlumno.puntajeObtenido} + ' / ' + ${nuevoCuestionarioAlumno.cuestionario.puntajeTotal}" style="color: darkblue;"></h1>
+          
+     </div>
+    </div>
+    
+    <a class="btn btn-primary" th:ref="@{/elegirCuestionario}" href="/elegirCuestionario" style="background-color: #007bff; color: #fff;">Probar otro cuestionario</a>
+    <br>
+    <a class="btn btn-primary" th:href="@{/principal}" style="background-color: #007bff; color: #fff;">Volver al Inicio</a>
+</div>
+
+
+<script th:src="@{/webjars/bootstrap/5.3.0/js/bootstrap.min.js}"></script>
+</body>
+</html>

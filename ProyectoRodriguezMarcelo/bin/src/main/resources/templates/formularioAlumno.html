@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Registrar Estudiante</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            margin: 0 auto;
+            padding: 30px;
+        }
+
+        h4 {
+            font-size: 2rem;
+            color: #343a40;
+        }
+
+        .col-md-6, .col-md-5, .col-md-4, .col-md-12 {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: #fff;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="~{layout :: header}"></div>
+
+    <div class="container">
+        <h4 class="text-center">Registrar Nuevo Estudiante</h4>
+
+        <form th:object="${nuevoAlumno}" th:action="${band}?@{/modificarAlumno}:@{/guardarAlumno}" method="post">
+            <div class="row g-3">
+                <input type="hidden" class="form-control" th:if="${band}" th:field="*{id_Alumno}">
+                
+                <div class="col-md-6">
+                    <label class="form-label" for="nombreID">Nombre</label>
+                    <input type="text" class="form-control" id="nombreID" th:field="*{nombre}" title="Ingresa un nombre válido, sin números o caracteres especiales." pattern="[A-Za-z\s]+" required>
+                </div>
+                
+                <div class="col-md-6">
+                    <label class="form-label" for="apellido">Apellido</label>
+                    <input type="text" th:field="*{apellido}" class="form-control" required>
+                </div>
+                
+                <div class="col-md-5">
+                    <label class="form-label" for="dniID">DNI</label>
+                    <input type="number" class="form-control" id="dniID" th:field="*{dni}" min="10000000" max="99999999"  title="Ingresa un número de 8 dígitos." required>
+                </div>
+
+                <div class="col-md-5">
+                    <label class="form-label" for="telID">Número de Teléfono</label>
+                    <input type="tel" class="form-control" id="telID" th:field="*{telefono}" pattern="\d{10}" title="Ingresa un número de 10 dígitos." required>
+                </div>
+                
+                <div class="col-md-12">
+                    <label class="form-label" for="direccion">Dirección</label>
+                    <input type="text" th:field="*{direccion}" class="form-control" required>
+                </div>
+                
+                <div class="col-md-4">
+                    <label class="form-label" for="correo">Correo</label>
+                    <input type="email" th:field="*{correo}" class="form-control" required>
+                </div>
+                
+                <div class="col-md-4">
+                    <label class="form-label">Curso</label>
+                    <select th:field="*{curso}" class="form-select" required>
+                        <option value="1">Primer Año</option>
+                        <option value="2">Segundo Año</option>
+                        <option value="3">Tercer Año</option>
+                        <option value="4">Cuarto Año</option>
+                        <option value="5">Quinto Año</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-4">
+                    <label class="form-label">División</label><br>
+                    <div th:each="opcion : ${listaDivisiones}" class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" th:id="'opcion' + ${opcion}" th:name="division" th:field="*{division}" th:value="${opcion}" required>
+                        <label class="form-check-label" th:for="'opcion' + ${opcion}" th:text="${opcion}"></label>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <button type="submit"  class="btn btn-success btn-block">Registrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

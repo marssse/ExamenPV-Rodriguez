@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Lista de Alumnados</title>
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div th:replace="~{layout :: header}"></div>
+	<div class="container-fluid">
+	  <div class="row justify-content-between mb-3">
+	    <div class="col-md-auto">
+	      <h3>Lista de Alumnados</h3>
+	    </div>
+	    <div class="col-md-auto">
+	    </div>
+	  </div>
+	</div>
+	<div class="container-fluid">
+		<table class="table table-primary table-striped-columns">
+		<tr>
+			<th>Nombre</th>
+			<th>Apellido</th>
+			<th>Curso</th>
+			<th>División</th>
+		</tr>
+		<tr th:each="alumno : ${alumnoListado}">
+			<td th:text="${alumno.nombre}"></td>
+			<td th:text="${alumno.apellido}"></td>
+			<td>
+		      <span th:switch="${alumno.curso}">
+		        <span th:case="1">Primer Año</span>
+		        <span th:case="2">Segundo Año</span>
+		        <span th:case="3">Tercer Año</span>
+		        <span th:case="4">Cuarto Año</span>
+		        <span th:case="5">Quinto Año</span>
+		      </span>
+			</td>
+			<td th:text="${alumno.division}"></td>
+		</tr>
+		</table>
+	</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+</body>
+</html>
