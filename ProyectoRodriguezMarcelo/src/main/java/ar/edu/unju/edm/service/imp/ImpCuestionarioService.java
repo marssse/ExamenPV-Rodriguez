@@ -58,7 +58,7 @@ public class ImpCuestionarioService implements ICuestionarioService {
 	        ArrayList<Cuestionario> cuestionariosDeDocente= new ArrayList<>();
 		    
 		        for(int i=0; i<cuestionarios.size();i++) {
-		        	if(cuestionarios.get(i).getDocente().getId_Docente()==Integer.parseInt(entidadAutenticada.getUsername())){
+		        	if(cuestionarios.get(i).getDocente().getDni()==Integer.parseInt(entidadAutenticada.getUsername())){
 		        		cuestionariosDeDocente.add(cuestionarios.get(i));
 		        	}
 		        }

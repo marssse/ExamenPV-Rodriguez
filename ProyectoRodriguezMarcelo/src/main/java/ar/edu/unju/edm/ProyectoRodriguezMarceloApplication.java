@@ -11,10 +11,10 @@ import ar.edu.unju.edm.service.IAlumnoService;
 import ar.edu.unju.edm.service.IDocenteService;
 
 @SpringBootApplication
-public class ProyectoEmilianoAramayoApplication implements CommandLineRunner{
+public class ProyectoRodriguezMarceloApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProyectoEmilianoAramayoApplication.class, args);	
+		SpringApplication.run(ProyectoRodriguezMarceloApplication.class, args);	
 	}
 
 	@Autowired
@@ -33,15 +33,15 @@ public class ProyectoEmilianoAramayoApplication implements CommandLineRunner{
 	public void run (String... args) throws Exception{
 
 		docente.setEstado(true);
-		docente.setApellido("Ramirez");
-		docente.setContrasenia("nicolas");
+		docente.setApellido("Rodriguez");
+		docente.setContrasenia("marcelo22");
 		docente.setDni(45881380);
-		docente.setCorreo("rama@gmail.com");
+		docente.setCorreo("marsecarp912@gmail.com");
 		docente.setMateria("programacion");
-		docente.setNombre("Mateo");
+		docente.setNombre("Marcelo");
 		docente.setTipo("ADMIN");
 		docente.setTelefono("3884633949");
-		docente.setDireccion("cuyaya");
+		docente.setDireccion("Tokyo");
 		docente.setLegajo(1234);
 		docente.setLocalidad("Jujuy");
 		docenteService.cargarDocente(docente);

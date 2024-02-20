@@ -17,7 +17,7 @@
         <form th:object="${docenteParaLoguear}" th:action="@{/login}" method="post">
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario</label>
-                <input type="text" class="form-control" id="usuario" th:field="*{id_Docente}" name="usuario" placeholder="Ingrese el ID del docente">
+                <input type="text" class="form-control" id="usuario" th:field="*{dni}" name="usuario" placeholder="Ingrese el ID del docente">
             </div>
             <div class="mb-3">
                 <label for="contraseña" class="form-label">Contraseña</label>
