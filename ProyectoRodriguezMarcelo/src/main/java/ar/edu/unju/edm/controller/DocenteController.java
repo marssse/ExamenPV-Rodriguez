@@ -26,15 +26,13 @@ public class DocenteController {
 	private static final Log GRUPO6 = LogFactory.getLog(DocenteController.class);
 	
 	@Autowired
-	Docente unDocente;
-	
-	@Autowired
 	IDocenteService unServicio;
 	
 	@GetMapping("/docente")
 	public ModelAndView cargarDocente() {
 		ModelAndView cargaDocente = new ModelAndView("formularioDocente");
-		cargaDocente.addObject("nuevoDocente", unDocente);
+		Docente docente=new Docente();
+		cargaDocente.addObject("nuevoDocente", docente);
 		
 		cargaDocente.addObject("band", false);
 		GRUPO6.warn("Cargando nuevo Docente");
@@ -44,7 +42,8 @@ public class DocenteController {
 	@GetMapping("/listadoDocente")
 	public ModelAndView mostrarDocente() {
 		ModelAndView listadoDocentes = new ModelAndView("mostrarDocentes");
-		listadoDocentes.addObject("docenteListado", unDocente);
+		Docente docente=new Docente();
+		listadoDocentes.addObject("docenteListado", docente);
 		
 		listadoDocentes.addObject("docenteListado",unServicio.listarDocentes());
 		
@@ -54,7 +53,8 @@ public class DocenteController {
 	@GetMapping("/listaDeDocentes")
 	public ModelAndView mostrarDocentes() {
 		ModelAndView listadoDocentes = new ModelAndView("listaDeDocentes");
-		listadoDocentes.addObject("docenteListado", unDocente);
+		Docente docente=new Docente();
+		listadoDocentes.addObject("docenteListado", docente);
 		
 		listadoDocentes.addObject("docenteListado",unServicio.listarDocentes());
 		
@@ -65,6 +65,7 @@ public class DocenteController {
 	public ModelAndView guardarDocente(@Valid @ModelAttribute("nuevoDocente") Docente docenteNuevo,@RequestParam("file") MultipartFile[] archivo, BindingResult resultado ){
 		
 		if(resultado.hasErrors()) {
+			GRUPO6.info("tiene error");
 			ModelAndView cargaDocente = new ModelAndView("formularioDocente");
 			cargaDocente.addObject("nuevoDocente", docenteNuevo);
 			return cargaDocente;
@@ -86,6 +87,7 @@ public class DocenteController {
 		
 		GRUPO6.warn("Mostrando el nuevo docente " + docenteNuevo.getNombre());
 		try {
+			GRUPO6.info("cargandooo");
 			unServicio.cargarDocente(docenteNuevo);
 		}catch(Exception e) {
 			listadoDocentes.addObject("cargaDocenteErrorMessage", e.getMessage());
@@ -99,8 +101,8 @@ public class DocenteController {
 	
 	//MODIFICAR 
 	
-	@GetMapping("/modificarDocente/{id_Docente}")
-	public ModelAndView modificarDocente(@PathVariable(name="id_Docente") Integer id) {
+	@GetMapping("/modificarDocente/{dni}")
+	public ModelAndView modificarDocente(@PathVariable(name="dni") Integer id) {
 		ModelAndView editarDocente = new ModelAndView("formularioDocente");
 		
 		try {
@@ -134,7 +136,8 @@ public class DocenteController {
 		
 		
 		try {
-			GRUPO6.warn("Docente modificado: " + docenteNuevo.getId_Docente());
+			GRUPO6.warn("Docente modificado: " + docenteNuevo.getDni());
+			GRUPO6.warn(docenteNuevo.getApellido());
 			unServicio.cargarDocente(docenteNuevo);
 		}catch(Exception e) {
 			listadoDocentes.addObject("cargaDocenteErrorMessage", e.getMessage());
@@ -148,8 +151,8 @@ public class DocenteController {
 	
 	//ELIMINAR
 	
-	@GetMapping("/eliminarDocente/{id_Docente}")
-	public ModelAndView eliminarDocente(@PathVariable(name="id_Docente") Integer id) {
+	@GetMapping("/eliminarDocente/{dni}")
+	public ModelAndView eliminarDocente(@PathVariable(name="dni") Integer id) {
 		ModelAndView eliminarDocente = new ModelAndView("mostrarDocentes");
 		
 		try {

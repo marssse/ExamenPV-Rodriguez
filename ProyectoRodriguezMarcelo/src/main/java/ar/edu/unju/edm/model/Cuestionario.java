@@ -21,7 +21,7 @@ public class Cuestionario {
 	private Integer id_Cuestionario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_Docente")
+	@JoinColumn(name = "dni")
 	private Docente docente;
 	
 	@NotBlank(message= "titulo is required")

@@ -45,7 +45,6 @@
         <h4 class="text-center">Registrar Nuevo Docente</h4>
         <form th:object="${nuevoDocente}" th:action="${band}?@{/modificarDocente}:@{/guardarDocente}" method="post" enctype="multipart/form-data">
             <div class="row g-3">
-                <input type="hidden" class="form-control" th:if="${band}" th:field="*{id_Docente}">
                 <div class="col-md-6">
                     <label class="form-label" for="nombreID">Nombre</label>
                     <input type="text" class="form-control" id="nombreID" title="Ingresa un nombre válido, sin números o caracteres especiales." pattern="[A-Za-z\s]+" th:field="*{nombre}" required>

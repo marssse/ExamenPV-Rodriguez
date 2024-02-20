@@ -23,11 +23,6 @@ public class ImpDocenteService implements IDocenteService {
 	public void cargarDocente(Docente unDocente) {
 		unDocente.setEstado(true);
 		unDocente.setTipo("ADMIN");
-
-		if(docenteRepository.findByDni(unDocente.getDni()).isPresent()) {
-			return;
-		}
-		
 		String pw = unDocente.getContrasenia();
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(4);
 		unDocente.setContrasenia(encoder.encode(pw));

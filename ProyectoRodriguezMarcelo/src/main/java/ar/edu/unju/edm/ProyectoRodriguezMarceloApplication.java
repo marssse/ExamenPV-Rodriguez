@@ -11,10 +11,10 @@ import ar.edu.unju.edm.service.IAlumnoService;
 import ar.edu.unju.edm.service.IDocenteService;
 
 @SpringBootApplication
-public class ProyectoEmilianoAramayoApplication implements CommandLineRunner{
+public class ProyectoRodriguezMarceloApplication implements CommandLineRunner{
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProyectoEmilianoAramayoApplication.class, args);	
+		SpringApplication.run(ProyectoRodriguezMarceloApplication.class, args);	
 	}
 
 	@Autowired

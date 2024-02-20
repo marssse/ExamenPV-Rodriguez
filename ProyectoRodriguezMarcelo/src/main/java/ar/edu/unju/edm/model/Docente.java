@@ -17,8 +17,8 @@ import javax.validation.constraints.Size;
 @Entity
 public class Docente {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id_Docente;
+	@NotNull(message= "dni is required")
+	private Integer dni;
 	
 	private String contrasenia;
 	
@@ -29,10 +29,7 @@ public class Docente {
 	@NotBlank(message= "apellido is required")
 	@Size(max=20)
 	private String apellido;
-	
-	@NotNull(message= "dni is required")
-	private Integer dni;
-	
+
 	@NotNull(message= "telefono is required")
 	private String telefono;
 	
@@ -80,13 +77,6 @@ public class Docente {
 		this.estado = estado;
 	}
 
-	public Integer getId_Docente() {
-		return id_Docente;
-	}
-	
-	public void setId_Docente(Integer id_Docente) {
-		this.id_Docente=id_Docente;
-	}
 
 	public String getNombre() {
 		return nombre;

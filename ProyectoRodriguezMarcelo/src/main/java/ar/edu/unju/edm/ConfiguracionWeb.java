@@ -25,9 +25,7 @@ public class ConfiguracionWeb extends WebSecurityConfigurerAdapter {
 		http
 		    .authorizeRequests()
 		    .antMatchers(resources).permitAll()
-		    //.antMatchers("/","index","/login","/home","/elegirCuestionario","/resolverCuestionario/{id_Cuestionario}","/resultadoDeCuestionario/{id_Cuestionario}","/cuestionariosRealizados","/listaDeAlumnos","/listaDeDocentes").permitAll()
-			.antMatchers("/login", "index").permitAll()
-		    
+		    .antMatchers("/","index","/login","/home","/elegirCuestionario","/resolverCuestionario/{id_Cuestionario}","/resultadoDeCuestionario/{id_Cuestionario}","/cuestionariosRealizados").permitAll()
 		    //saquen de comentarios este para que puedan crear un docente con contraseña y luego dejen el que estaba
 		    //.antMatchers("/","index","/docente","/guardarDocente","/login","/home","/principal","/elegirCuestionario","/resolverCuestionario/{id_Cuestionario}","/resultadoDeCuestionario/{id_Cuestionario}","/cuestionariosRealizados","/listaDeAlumnos","/listaDeDocentes").permitAll()
 		    .antMatchers("/**").hasAuthority("ADMIN")
@@ -39,7 +37,7 @@ public class ConfiguracionWeb extends WebSecurityConfigurerAdapter {
 		    	.permitAll()
 		    	.successHandler(autenticacion)
 		    	.failureUrl("/login?error=true")
-		    	.usernameParameter("id_Docente")
+		    	.usernameParameter("dni")
 		    	.passwordParameter("contrasenia")
 		    	.and()
 		    	.csrf().disable()

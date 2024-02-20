@@ -22,10 +22,10 @@ public class LoginService implements UserDetailsService{
 	DocenteRepository docenteRepository;
 	
 	@Override
-	public UserDetails loadUserByUsername(String id_Docente) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String dni) throws UsernameNotFoundException {
 		
 		//busqueda del usuario
-		Docente docenteEncontrado = docenteRepository.findById(Integer.parseInt(id_Docente)).orElseThrow(()-> new UsernameNotFoundException("Usuario Invalido"));
+		Docente docenteEncontrado = docenteRepository.findById(Integer.parseInt(dni)).orElseThrow(()-> new UsernameNotFoundException("Usuario Invalido"));
 		
 		//definir autorizaciones
 		List<GrantedAuthority> tipos = new ArrayList<>();
@@ -33,7 +33,7 @@ public class LoginService implements UserDetailsService{
 		tipos.add(grantedAuthority);
 		
 		//definir el usuario en sesion
-		UserDetails docenteEnSesion = new User(id_Docente,docenteEncontrado.getContrasenia(),tipos);
+		UserDetails docenteEnSesion = new User(dni,docenteEncontrado.getContrasenia(),tipos);
 		
 		return docenteEnSesion;
 	}

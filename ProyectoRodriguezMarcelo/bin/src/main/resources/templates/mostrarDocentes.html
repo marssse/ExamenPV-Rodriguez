@@ -20,7 +20,7 @@
 	<div class="container-fluid">
 		<table class="table table-striped-columns table-primary">
 		<tr>
-			<th>Código</th>
+
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>DNI</th>
@@ -34,7 +34,7 @@
 			<th>Edición</th>
 		</tr>
 		<tr th:each="docente : ${docenteListado}">
-		 	<td th:text="${docente.id_Docente}"></td>
+
 		  	<td th:text="${docente.nombre}"></td>
 		  	<td th:text="${docente.apellido}"></td>
 		  	<td th:text="${docente.dni}"></td>
@@ -49,9 +49,9 @@
 			</td>
 		 	
 			<td>
-				<a th:href="@{|/eliminarDocente/${docente.id_Docente}|}" class="btn btn-danger">Borrar</a>
+				<a th:href="@{|/eliminarDocente/${docente.dni}|}" class="btn btn-danger">Borrar</a>
 					
-				<a th:href="@{'/modificarDocente/'+${docente.id_Docente}}" class="btn btn-success" >Editar</a>
+				<a th:href="@{'/modificarDocente/'+${docente.dni}}" class="btn btn-success" >Editar</a>
 			</td>
 		</tr>
 		</table>

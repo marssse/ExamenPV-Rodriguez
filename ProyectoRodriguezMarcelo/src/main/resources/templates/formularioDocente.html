@@ -45,7 +45,6 @@
         <h4 class="text-center">Registrar Nuevo Docente</h4>
         <form th:object="${nuevoDocente}" th:action="${band}?@{/modificarDocente}:@{/guardarDocente}" method="post" enctype="multipart/form-data">
             <div class="row g-3">
-                <input type="hidden" class="form-control" th:if="${band}" th:field="*{id_Docente}">
                 <div class="col-md-6">
                     <label class="form-label" for="nombreID">Nombre</label>
                     <input type="text" class="form-control" id="nombreID" title="Ingresa un nombre válido, sin números o caracteres especiales." pattern="[A-Za-z\s]+" th:field="*{nombre}" required>
@@ -54,15 +53,17 @@
                     <label class="form-label" for="apellidoID">Apellido</label>
                     <input type="text" class="form-control" id="apellidoID" th:field="*{apellido}" pattern="[A-Za-z\s]+" title="Ingresa un apellido válido, sin números o caracteres especiales." required>
                 </div>
-                <div class="col-md-12">
+                <div th:if="${!band}" class="col-md-12">
                     <label class="form-label" for="contraseniaID">Contraseña</label>
                     <input type="password" class="form-control" id="contraseniaID" th:field="*{contrasenia}" title="Ingresa una contraseña." required>
                 </div>
-                <div class="col-md-12">
+                <input th:if="${band}" type="hidden" class="form-control" id="contraseniaID" th:field="*{contrasenia}" title="Ingresa una contraseña." required>
+                <div th:if="${!band}" class="col-md-12">
                     <label class="form-label" for="dniID">DNI</label>
                     <input type="number" class="form-control" id="dniID" th:field="*{dni}" min="1000000" max="99999999" title="Ingresa un número de 8 dígitos." required>
                 </div>
-                <div class="col-md-6">
+                <input type="hidden" class="form-control" id="dniID" th:field="*{dni}" min="1000000" max="99999999" title="Ingresa un número de 8 dígitos." required>
+                <div  class="col-md-6">
                     <label class="form-label" for="telID">Número de Teléfono</label>
                     <input type="tel" class="form-control" id="telID" th:field="*{telefono}" pattern="\d{10}" title="Ingresa un número de 10 dígitos." required>
                 </div>
@@ -92,7 +93,7 @@
                     <img id="output" style="width: 146px;">
                 </div>
             </div>
-            <button class="btn btn-success rounded-pill" type="submit">Registrar</button>
+            <button class="btn btn-success rounded-pill" type="submit"><span th:text="${band}?'modificar':'registrar'"></span></button>
         </form>
     </div>
 
